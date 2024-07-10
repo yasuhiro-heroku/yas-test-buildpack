@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# $1 is BUILD-DIR so that this means detecting root directory
+echo "HELLO this is test buildpack, this one requires hello.txt"
+if [ -f $1/hello.txt ]; then
+	echo "SUCCESS"
+	exit 0
+else
+	echo "FAILURE"
+	exit 1
+fi

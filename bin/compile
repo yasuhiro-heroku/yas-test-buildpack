@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#finish when this script failed
+set -o errexit
+
+echo "My buildpack compiling process START"
+
+# arguments are defined by Heroku
+# $1 --> BUILD_DIR
+# $2 --> CACHE_DIR
+# $3 --> ENV_DIR
+
+BUILD_DIR=$1
+VENDOR_DIR="$BUILD_DIR/vendor"
+ENV_DIR=$3
+
+# set from ConfigVars
+YOUR_NAME=$(<"$ENV_DIR/YOUR_NAME")
+
+FILE_NAME=$1/hello.txt
+while read LINE
+do
+	echo ${YOUR_NAME}
+	echo ${LINE}
+done < ${FILE_NAME}
+
+echo "My buildpack compiling process END"
